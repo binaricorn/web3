@@ -1,0 +1,169 @@
+@body-font: 'Antic Slab', serif;
+@highlight-font: 'Pontano Sans', sans-serif;
+@link-color: red;
+@h1-size: 16px;
+@h1-leading: 24px;
+@gray-border: 1px solid #dedede;
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+h1, h2, h3, h4 {
+    font-family: @body-font;
+}
+
+h1 {
+	font-size: @h1-size;
+	line-height: @h1-leading;	
+}
+
+body {
+	padding: 40px;
+	font-family: @body-font;
+}
+
+a {
+	color: @link-color;
+	text-decoration: none;
+}
+
+#content {
+	width: 700px;
+	margin: 0 auto;
+}
+
+header {
+	margin: 0 auto 20px;
+	border-bottom: @gray-border;
+}
+
+header ul {
+	list-style-type: none;
+	padding: 12px;	
+	font-family: @highlight-font;
+}
+
+header ul li {
+	border-bottom: @gray-border;
+	padding: 6px 0;
+	font-size: 13px;
+}
+
+header ul li:last-child {
+	border-bottom: none;
+}
+
+#info {
+	width: 16%;
+	border-right: @gray-border;
+	padding-right: 2%;
+	margin-right: 2%;
+}
+
+#bio {
+	width: 78%;
+	padding-left: 1%;
+}
+
+#logo {
+	margin-top: -13px;
+}
+
+
+.clear {
+	clear: both;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.project-desc {
+	display: block;
+	opacity: 0;
+	position:absolute;
+	top:0;
+	left:0;
+	width:408px;
+	height: 254px;
+	background: #fff;
+	border-top: 5px solid #232323;
+	
+}
+
+.project-desc a {
+	display: block;
+	text-decoration: none;
+	width:408px;
+	height: 254px;
+	display:block;
+	
+}
+
+
+.project-desc h3 {
+	padding-top: 15px;
+	color: #232323;
+}
+
+.project-desc h3, .project-desc p {
+	padding-left: 15px;
+	
+}
+
+.project-desc p {
+	font-size: 13px;
+	color: #232323;
+}
+
+.project-desc:hover {
+	width:408px;
+	opacity: 0.92;
+	transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
+}
+
+
+#grid_video img {
+	opacity:1;
+	transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
+}
+
+#grid_video img:hover {
+	opacity:.5;
+}
+
+
+#grid_illustration {
+	background: #eefbf4;
+}
+
+#grid_illustration img {
+	width: 197px;
+}
+
+.content ul li {
+	display: inline;
+	padding-right: 14px;
+	list-style-type: none;
+	float:left;
+	padding-bottom: 14px;
+	position:relative;
+}
+
+.content ul li:hover {
+	cursor:hand;	
+}
+
+.content ul li img {
+	width: 100%;
+}
