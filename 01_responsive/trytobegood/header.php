@@ -3,6 +3,10 @@
 <html>
 <head>
 	<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+	<meta name="description" content="Fei Liu (Trytobegood) is a New York based artist and designer.">
+	<meta name="keywords" content="Trytobegood, Browsercize, Fei Liu">
+	<meta name="author" content="Trytobegood">
+	
 	<title>TRYTOBEGOOD</title>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 	<link href='http://fonts.googleapis.com/css?family=Antic+Slab|Pontano+Sans' rel='stylesheet' type='text/css'>
@@ -14,7 +18,11 @@
 <body>
 
 <article id="content">
-	<section id="over">Rest your hands and put the phone on a table.</section>
+	<section id="over">Rest your arms and put the phone on a table.
+		<section id="dot-canvas">
+            <div id="dotTemplate" class="dot"></div> 
+        </section>
+	</section>
 	<header>
 		<!--
 <section id="info-mobile">
