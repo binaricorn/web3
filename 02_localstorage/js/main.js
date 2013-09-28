@@ -56,28 +56,13 @@ function displayPost(thisPost){
 
 
 
-
-
 function storePosts(posts){
 
-    console.log('array: ' + posts);
-
-    // make the array a string
     posts = JSON.stringify(posts);
-    console.log('json: ' + posts);
-
-    // store the string
     localStorage.posts = posts;
 
 }
 
-
-
-/*
-function storeSelected(selectedPosts) {
-	selectedPosts
-}
-*/
 
 
 function loadPosts(){
@@ -105,43 +90,50 @@ function loadPosts(){
 
 }
 
-
-// load posts on page load
 loadPosts();
 
-// Must go after loadPosts() because the DOM does not have any <article>s inside it yet?
-$("article").click(function() { 
+
+$("article").click(function() {  // Must go after loadPosts() because the DOM does not have any <article>s inside it yet?
 	   $(this).toggleClass("selected");
 	   
 	   if($(this).hasClass("selected")) {
+
 		 selectedPosts.push($(this).attr('id'));
+		 storeSelected(selectedPosts);
+
 	   } else {
-	   	 //removes $(this) element's id from the array	
 	   	 selectedPosts.splice($.inArray($(this).attr('id'), selectedPosts), 1); 
 	   }
-	   
-	   console.log(selectedPosts);
-    });
+	});
+    
 
-/*
-function storeSelected() {
+function storeSelected(selectedPosts) {
+
 	selectedPosts = JSON.stringify(selectedPosts);
 	localStorage.selectedPosts = selectedPosts;
+
 }
-*/
 
 
-  /*
- $(this).toggleClass("selected");
-   if($(this).hasClass("selected")) {
-	    // console.log($(this).attr('id') + " has class selected"); 
-	    selectedPosts.push($(this).attr('id'));
-	    console.log(selectedPosts);
-	   //     storeSelected(selectedPosts);
-   }
-*/
-   
-/* }); */
-	
+
+function displaySelected() {
+	if (localStorage.selectedPosts) {
+		selectedPosts = localStorage.selectedPosts;
+		selectedPosts = JSON.parse(selectedPosts);
+		
+		for( i=0, count=selectedPosts.length; i<count; i++) {
+			$("#" + selectedPosts[i]).toggleClass("selected");
+			
+			console.log(selectedPosts[i] + " there are posts");
+		}
+		
+	}
+}
+
+displaySelected();
+
+/* console.log(selectedPosts); */
+
+
 
 	
