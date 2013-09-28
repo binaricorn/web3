@@ -8,7 +8,8 @@
 
 
 
-var posts = [];
+var posts, selectedPosts = [];
+var postId = 0;
 
 /**
  * form action
@@ -19,7 +20,7 @@ var posts = [];
 
 $('#draft button').click( function(event){
     // stop form from trying to send & refresh page
-    event.preventDefault();
+   /*  event.preventDefault(); */
 
     // create post from form
     var thisPost = {};
@@ -34,7 +35,6 @@ $('#draft button').click( function(event){
 
     displayPost(thisPost);
     storePosts(posts);
-
 });
 
 
@@ -45,25 +45,18 @@ $('#draft button').click( function(event){
 
 function displayPost(thisPost){
     
-    var html = '<article><h2>'+ thisPost.title +'</h2><p>'+ thisPost.content +'</p></article>';
+    
+    var html = '<article id=postId' + postId + '><h2>'+ thisPost.title +'</h2><p>'+ thisPost.content +'</p></article>';
     $('#feed').prepend(html);
    
-    //I'm guessing the <article> doesn't exist anywhere else other than in this function?
-    $("article").click(function() {
-	    $(this).toggleClass("selected");
-		});
+    postId ++;
+    
+    
 }
 
 
 
-/**
- * store posts
- *
- * note: localStorage only stores STRINGS
- *          arrays/objects must be STRINGIFIED
- *          numbers are fine but will be returned as a strong
- *
- */
+
 
 function storePosts(posts){
 
@@ -80,27 +73,12 @@ function storePosts(posts){
 
 
 
-/**
- * localStorage = STRINGS only!!
- *
- * note: localStorage only stores STRINGS
- *  - arrays/objects must be STRINGIFIED before storage, PARSED after retrieval. 
- *  - numbers also: 
- *       var num = localStorage.mynumber;   // '10.123' 
- *           num = parseFloat(num);         // 10.123 
- *           num = parseInt(num);           // 10
- *
- */
+/*
+function storeSelected(selectedPosts) {
+	selectedPosts
+}
+*/
 
-
-/**
- * load posts
- *
- * note: localStorage only stores STRINGS
- *          arrays/objects must be PARSED
- *          numbers also: var num = parseInt(); 
- *
- */
 
 function loadPosts(){
 
@@ -127,32 +105,43 @@ function loadPosts(){
 
 }
 
+
 // load posts on page load
 loadPosts();
 
+// Must go after loadPosts() because the DOM does not have any <article>s inside it yet?
+$("article").click(function() { 
+	   $(this).toggleClass("selected");
+	   
+	   if($(this).hasClass("selected")) {
+		 selectedPosts.push($(this).attr('id'));
+	   } else {
+	   	 //removes $(this) element's id from the array	
+	   	 selectedPosts.splice($.inArray($(this).attr('id'), selectedPosts), 1); 
+	   }
+	   
+	   console.log(selectedPosts);
+    });
 
-/**
- * advanced
- * alternative way to organize your code
- * not currently in use
- */
-
-var app = {
-    load : function(){
-        if (localStorage.posts) { 
-            posts = localStorage.posts;
-            posts = JSON.parse(posts);
-            for( i=0, count=posts.length; i<count; i++ ){
-                var thisPost = posts[i]
-                displayPost(thisPost);
-            }
-        }        
-    },
-    store : function(posts){
-        posts = JSON.stringify(posts);
-        localStorage.posts = posts;
-    }
+/*
+function storeSelected() {
+	selectedPosts = JSON.stringify(selectedPosts);
+	localStorage.selectedPosts = selectedPosts;
 }
+*/
 
-// app.load();
-// app.store(posts);
+
+  /*
+ $(this).toggleClass("selected");
+   if($(this).hasClass("selected")) {
+	    // console.log($(this).attr('id') + " has class selected"); 
+	    selectedPosts.push($(this).attr('id'));
+	    console.log(selectedPosts);
+	   //     storeSelected(selectedPosts);
+   }
+*/
+   
+/* }); */
+	
+
+	

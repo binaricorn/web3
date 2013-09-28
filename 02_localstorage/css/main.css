@@ -44,11 +44,15 @@ article {
 }
 
 .selected {
-	background: blue;
+	background: #b5beef;
 }
 
 article:hover {
     background:#fff;
+}
+
+article.selected:hover {
+	background: #cafcee !important;
 }
     
     
