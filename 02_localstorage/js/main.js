@@ -20,7 +20,7 @@ var postId = 0;
 
 $('#draft button').click( function(event){
     // stop form from trying to send & refresh page
-   /*  event.preventDefault(); */
+    event.preventDefault();
 
     // create post from form
     var thisPost = {};
@@ -52,9 +52,11 @@ function displayPost(thisPost){
     postId ++;
     
     
+    
 }
 
 
+selectPosts();
 
 function storePosts(posts){
 
@@ -92,8 +94,8 @@ function loadPosts(){
 
 loadPosts();
 
-
-$("article").click(function() {  // Must go after loadPosts() because the DOM does not have any <article>s inside it yet?
+function selectPosts() {
+	$("#feed").on('click', 'article', function() {  // Must go after loadPosts() because the DOM does not have any <article>s inside it yet?
 	   $(this).toggleClass("selected");
 	   
 	   if($(this).hasClass("selected")) {
@@ -105,6 +107,10 @@ $("article").click(function() {  // Must go after loadPosts() because the DOM do
 	   	 selectedPosts.splice($.inArray($(this).attr('id'), selectedPosts), 1); 
 	   }
 	});
+}
+
+
+
     
 
 function storeSelected(selectedPosts) {
@@ -122,9 +128,8 @@ function displaySelected() {
 		selectedPosts = JSON.parse(selectedPosts);
 		
 		for( i=0, count=selectedPosts.length; i<count; i++) {
-			$("#" + selectedPosts[i]).toggleClass("selected");
+			$("#" + selectedPosts[i]).addClass("selected");
 			
-			console.log(selectedPosts[i] + " there are posts");
 		}
 		
 	}
