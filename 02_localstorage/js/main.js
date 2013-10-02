@@ -42,6 +42,8 @@ $('#draft button').click( function(event){
  * display posts
  *
  */
+ 
+ // Can also try using eq: or .index()
 
 function displayPost(thisPost){
     
@@ -98,14 +100,15 @@ function selectPosts() {
 	$("#feed").on('click', 'article', function() {  // Must go after loadPosts() because the DOM does not have any <article>s inside it yet?
 	   $(this).toggleClass("selected");
 	   
+		 
 	   if($(this).hasClass("selected")) {
-
-		 selectedPosts.push($(this).attr('id'));
-		 storeSelected(selectedPosts);
-
+		   selectedPosts.push($(this).attr('id'));
 	   } else {
 	   	 selectedPosts.splice($.inArray($(this).attr('id'), selectedPosts), 1); 
 	   }
+	   
+	   storeSelected(selectedPosts);
+	   
 	});
 }
 
