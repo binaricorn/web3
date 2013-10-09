@@ -32,7 +32,10 @@ $('#draft button').click( function(event){
 
     console.log('post: ',thisPost);
     console.log('posts: ',thisPost);
-
+    // post.id = posts.length + 1;
+    // Can also try using eq: or .index()
+    // Using time of post and store it in .data() ?
+   
     displayPost(thisPost);
     storePosts(posts);
 });
@@ -43,7 +46,7 @@ $('#draft button').click( function(event){
  *
  */
  
- // Can also try using eq: or .index()
+
 
 function displayPost(thisPost){
     
@@ -102,7 +105,7 @@ function selectPosts() {
 	   
 		 
 	   if($(this).hasClass("selected")) {
-		   selectedPosts.push($(this).attr('id'));
+		 selectedPosts.push($(this).attr('id'));
 	   } else {
 	   	 selectedPosts.splice($.inArray($(this).attr('id'), selectedPosts), 1); 
 	   }

@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<title>Get Your Browsercise On!</title>
+
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	
+
+	<style type="text/css">
+	* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	font-family: "Futura", Helvetica, sans-serif;
+	color: #1e53c6;
+}
+
+a {
+	text-decoration: none !important;
+	transition: color 0.5s;
+	cursor: pointer !important;		
+}
+
+a:visited {
+	color: #000 !important;
+}
+
+a:hover {
+	color: #999 !important;	
+	
+}
+
+h1 {
+	letter-spacing: -1px;
+	font-size: 2.5em;
+	line-height: 1.5em;
+}
+
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
+/* entypo */
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+}
+
+
+#overlay {
+	background: #ff0000 !important;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	top:0;
+	left:0;
+}
+
+#cover {
+	width: 100%;
+	margin: 0 auto;
+}
+
+#cover-content, #stretch-man {
+	margin: 0 auto;
+	width: 325px;
+	height: 450px;
+	background: url('img/stretch-blur3.gif') no-repeat;
+}
+
+#warning-content, #real-content {
+	margin: 20px auto;
+	width: 72%;
+}
+
+#real-content {
+	font-size: 3em;
+}
+
+#real-content p {
+	padding-top: 25px;
+}
+
+#warning {
+	font-size: 1.3em;
+	width: 100%;
+	background: yellow;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#warning-text {
+	width: 100%;
+	padding: 12px 15px;
+	float: right;
+	padding: 15px;
+	background: yellow;
+	border: 5px solid #1e53c6;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+#warning-text p {
+	padding: 15px 0 0;
+}
+
+/*
+#warning-img {
+	width: 129px;
+	height: 114px;
+	float: left;
+	background: url('img/warning.png') no-repeat;
+}
+*/
+
+#leftFoot, #rightFoot {
+	width: 100px;
+	height: 127px;
+	position: absolute;
+	bottom: 40px;
+	z-index: 1000000;
+}
+
+#leftFoot {
+	left: 40px;
+	background: url('img/leftFoot.png') no-repeat;
+}
+
+#rightFoot {
+	right: 40px;
+	background: url('img/rightFoot.png') no-repeat;
+}
+
+.stretch-count {
+	font-size: 48px;
+	text-align: center;
+	width: 30%;
+	margin: 0 auto;
+	background: yellow;
+	color: black;
+}
+
+.clear {
+	clear:both;
+}
+
+
+
+
+	</style>
+
+</head>
+<body>
+
+<div id="real-content">
+		Name: <input id="name">
+		<p><input type="button" id="submit" value="submit">	
+		<p><input type="checkbox" name="exercize" value="push ups">Push Ups
+		<input type="checkbox" name="exercize" value="stretches">Stretches
+		<p>Time between exercises: - 25 minutes +
+</div>
+
+<script src="scripts.js"></script>
+
+</body>
+</html>
