@@ -1,21 +1,19 @@
 window.onload = function() {
 	document.getElementById("button").onclick = function() {
-	
-		var port = chrome.extension.connect({name: "Sample Communication"});
-			port.postMessage("Hi BackGround");
-			port.onMessage.addListener(function(msg) {
-			        console.log("message recieved from background.js: "+ msg);
-		});
-/*
-		val name = $("#name").val();
-		console.log(name);
-*/
-		/*
-chrome.extension.sendMessage({
-	        type: "color-divs"
-	    });
-*/
-	}
-	
+		// only happens on just one page, and not all tabs
+		/* setInterval(function() {  */
+				chrome.extension.sendMessage({
+			        type: "color-divs"
+			    });
+			    
+			/*  }, 2000);  */
+		
+			
+setTimeout(function() {
+				window.close();
+			}, 1000);
 
+
+		
 	}
+}

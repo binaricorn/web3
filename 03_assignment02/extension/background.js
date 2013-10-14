@@ -1,21 +1,20 @@
-chrome.extension.onConnect.addListener(function(port) {
-  console.log("Connected .....");
-  port.onMessage.addListener(function(msg) {
-        console.log("message recieved");
-        port.postMessage("hello background.js");
-  });
-});
+var started = false;
 
-/*
+			
 
 // listening for an event / one-time requests
 // coming from the popup
 chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
     switch(request.type) {
         case "color-divs":
-            colorDivs();
+        	started = true;
+	
+            if (started == true) {
+            	//setInterval(function() { 
+            		colorDivs();
+            	//}, 1000);
+            }
         break;
-        
     }
     return true;
 });
@@ -27,6 +26,7 @@ var colorDivs = function() {
 	    chrome.tabs.sendMessage(tab.id, {type: "colors-div", color: "#F00"});
 	    // setting a badge
 		chrome.browserAction.setBadgeText({text: "Start!"});
+		console.log("hi");
 	});
 }
-*/
+
