@@ -133,6 +133,17 @@ loadPosts();
 
 
 /**
+ * mark posts as active
+ */
+
+$('#feed').on('click','article',function(){
+
+    $(this).toggleClass('active');
+    
+});
+
+
+/**
  * advanced
  * alternative way to organize your code
  * not currently in use
