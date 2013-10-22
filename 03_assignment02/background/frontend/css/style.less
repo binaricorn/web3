@@ -107,6 +107,7 @@ input[type="text"] {
 	color: @blue;
 	opacity: 0.7;
 	font-family: @body-font-family;
+	width: 100%;
 }
 
 input[type="button"] {
@@ -137,6 +138,31 @@ input[type="button"]:focus {
 	display: inline-block; 
 	background: @yellow;
 }
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+
+	#cover-content {
+		margin-left: 0 !important;
+	}
+	#edit {
+		background-size: 70% 70% !important;
+		right: 0 !important;
+	}
+	/* this screws up the whole mobile layout oddly enough 
+	h2 {
+		font-size: 10px;
+	}*/
+	
+	
+}
+
+@media only screen and (min-device-width: 481px) {
+	#warning-text {
+		width: 96%;
+	}
+}
 /*
 #real-content {
 	position:fixed;
@@ -158,7 +184,20 @@ input[type="button"]:focus {
 	position: relative;
 }
 
+#warning-text {
+		
+		padding: 12px 15px;
+		float: right;
+		padding: 15px;
+		background: yellow;
+		border: 5px solid @blue;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px;
+	}
+
 #edit {
+	background-position: 98% 25%;
 	position: absolute;
 	top: 10px;	right: 10px;
 	width: 40px; height: 40px;
@@ -180,17 +219,7 @@ input[type="button"]:focus {
 	left: 0;
 }
 
-#warning-text {
-	width: 100%;
-	padding: 12px 15px;
-	float: right;
-	padding: 15px;
-	background: yellow;
-	border: 5px solid @blue;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-}
+
 
 #warning-text p {
 	height: auto !important;
