@@ -19,6 +19,10 @@ $('header nav').on('click', 'a', function(){
     var page = $(this).text();
     $('.page').fadeOut();
     $('#' + page).fadeIn();
+    /* This would make it dependant
+    $('.page').fadeOut(function() {
+    	$('#' + page).fadeIn();
+    }); */
     
 })
 
@@ -87,8 +91,8 @@ function getLocation (){
  * vars for cartoDB
  *
  */
-var cartodb_accountname = 'web3';
-var cartodb_key = "&api_key=954a0e60614f834ef20463f40caf4387bcb4b0c2"; 
+var cartodb_accountname = 'binaricorn';
+var cartodb_key = "&api_key=5b561943a6bc04a6a0b172ace37a56aadc9760e1"; 
 
 var table_name = 'test';
 
@@ -99,7 +103,7 @@ var table_name = 'test';
  *
  * example query:
  * q=INSERT INTO test (name,description,the_geom)VALUES( 'tester', 'doing test', ST_GeomFromText('POINT(-71.2 42.5)', 4326) ) 
- *
+ http://web3.cartodb.com/api/v2/sql?q=INSERT INTO test (name,description,the_geom) VALUES('hector', 'going%20with%20it', ST_GeomFromText('POINT(-73.92546075941762 40.6450305936858)', 4326) )&api_key=954a0e60614f834ef20463f40caf4387bcb4b0c2
  */
 
 function addnote(location,name,description,msg){
@@ -187,7 +191,7 @@ function queryCarto(sql_statement){
 
     // console.log(url_query);
     $.getJSON(url_query, function(data){
-        console.log(data);
+        console.log(data[0].features[0].geometry);
 
         query_count = data.features.length;
 
