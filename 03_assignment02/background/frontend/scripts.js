@@ -2,10 +2,11 @@
 var userInfo = [];
 var thisUser = {};
 var data = {};
+var editing = false;
 var socket = io.connect('http://localhost');
 
 initPage();                              
-pageLoad(false);
+pageLoad();
 
 function initPage() {
 	/* Hide all the pages except for the first one on load */
@@ -33,7 +34,7 @@ function initPage() {
 }
 
 		
-function pageLoad(editing) {
+function pageLoad() {
 		
 	/* Initialize time variable from HTML*/
 	var timeVal = parseInt($("#time-val").text());
@@ -44,6 +45,8 @@ function pageLoad(editing) {
 			userInfo = JSON.parse(userInfo);
 			var currentEdit = userInfo.length-1;
 			$('#time-val').text(userInfo[currentEdit].time);
+			
+			
 			
 			$("#decrease-time").click(function() {
 				timeVal -= 5;
@@ -79,36 +82,38 @@ function pageLoad(editing) {
 		
 	});
 	
-	if(editing) {
-		/* Third page: Get timer selection */
-		$('#submit3').click(function() {
-			thisUser.time = $("#time-val").text();			
-			userInfo.push(thisUser);
-			storeUser(userInfo);
-		});
-		
-	} else {
-		/* Third page: Get timer selection */
-		$('#submit3').click(function() {
-			thisUser.time = $("#time-val").text();
-			$(".page section").eq(3).fadeOut("slow", function() {
-				$(".page section").eq(4).fadeIn("slow");
-				$("#progress-bar").css("width","100%");
-			});
-		});
-		
-		
-		/* Fourth page: Get timer selection */
-		$('#submit4').click(function() {
+	/* Third page: Get timer selection */
+	$('#submit3').click(function() {
+		thisUser.time = $("#time-val").text();			
+			
+			
+		// if we are currently editing
+		if (editing == true) {
+			console.log(editing)
 			userInfo.push(thisUser);
 			storeUser(userInfo);
 			setTimeout(function() {
 				location.reload();
 			}, 500)
-		
+		} else {
+			$(".page section").eq(3).fadeOut("slow", function() {
+			$(".page section").eq(4).fadeIn("slow");
+			$("#progress-bar").css("width","100%");
 		});
+
 	}
-}	
+	});	
+
+}
+	/* Fourth page: Get timer selection */
+	$('#submit4').click(function() {
+		userInfo.push(thisUser);
+		storeUser(userInfo);
+		setTimeout(function() {
+			location.reload();
+		}, 500)
+		
+	});
 
 function storeUser(userInfo) {
 	/* localStorage.deleteItem('userInfo'); */
@@ -208,7 +213,8 @@ function haveName() {
 					$(this).css({"opacity":"1","transition":"opacity 0.3s ease-in-out"});
 				}).click(function() {
 					hideGo();
-					pageLoad(true);
+					pageLoad();
+					editing = true;
 					
 					
 					$(".page section").eq(0).css("display","none");
@@ -313,7 +319,12 @@ jQuery( document ).ready( function () {
 				
 					
 					if (stretches <= 0) {
-						$('#overlay').hide("fast");
+						$("#warning-text").fadeOut(300, function() {
+							$(this).css("width","100%").text("Excellent job!").fadeIn();
+					});
+						setTimeout(function() {
+							$('#overlay').hide("fast");
+						}, 2000);
 					}
 				}	
 			};
