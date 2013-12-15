@@ -2,16 +2,19 @@
  * defaults for testing
  */ 
 
-var name = 'hector',
-    description = 'going with it',
+var name = 'xyz',
+    description = 'going with it...',
     notice = 'note posted to carto';
+
+
+var cat = $('form#serious').find('input.cat').val();
 
 /**
  * page nav
  */ 
 
-$('header nav').on('click', 'a', function(){
-    event.preventDefault();
+$('header nav').on('click', 'a', function(event){
+    event.preventDefault(event);
 
     $('header nav a').removeClass('active');    
     $(this).toggleClass('active');
@@ -19,11 +22,15 @@ $('header nav').on('click', 'a', function(){
     var page = $(this).text();
     $('.page').fadeOut();
     $('#' + page).fadeIn();
+<<<<<<< HEAD
     /* This would make it dependant
     $('.page').fadeOut(function() {
     	$('#' + page).fadeIn();
     }); */
     
+=======
+
+>>>>>>> b6714c12cd039ba163f9104a98699bcc23e037a1
 })
 
 
@@ -42,8 +49,8 @@ $('.notice').delay(2000).fadeOut(); // initial loading message
  * user actions
  */ 
 
-$('.addRandom').click( function(){
-    event.preventDefault();
+$('.addRandom').click( function(event){
+    event.preventDefault(event);
    addnote( random.location(), name, description, notice ); 
 });
 
@@ -91,11 +98,15 @@ function getLocation (){
  * vars for cartoDB
  *
  */
+<<<<<<< HEAD
 var cartodb_accountname = 'binaricorn';
 var cartodb_key = "&api_key=5b561943a6bc04a6a0b172ace37a56aadc9760e1"; 
 
+=======
+var cartodb_accountname = 'web3';
+var cartodb_key = "&api_key=954a0e60614f834ef20463f40caf4387bcb4b0c2"; 
+>>>>>>> b6714c12cd039ba163f9104a98699bcc23e037a1
 var table_name = 'test';
-
 
 
 /**
@@ -106,11 +117,14 @@ var table_name = 'test';
  http://web3.cartodb.com/api/v2/sql?q=INSERT INTO test (name,description,the_geom) VALUES('hector', 'going%20with%20it', ST_GeomFromText('POINT(-73.92546075941762 40.6450305936858)', 4326) )&api_key=954a0e60614f834ef20463f40caf4387bcb4b0c2
  */
 
+
+// location = '-73.99086 40.735031'
+
 function addnote(location,name,description,msg){
     console.log('addnote()',location);
 
     var description = escape(description);
-    var sqlInsert ="q=INSERT INTO "+ table_name +" (name,description,the_geom) VALUES('"+ name +"', '"+ description +"', ST_GeomFromText('POINT(" + location + ")', 4326) )";
+    var sqlInsert ="q=INSERT INTO "+ table_name +"(name,description,the_geom) VALUES('"+ name +"', '"+ description +"', ST_GeomFromText('POINT(" + location + ")', 4326) )";
 
     update_carto(sqlInsert,msg);
 }
@@ -120,12 +134,31 @@ function addnote(location,name,description,msg){
 /**
  * post note to carto
  *
+
+ * CARTO:
+ * INSERT INTO test (name,description,the_geom) VALUES( 'funny', 'remember', ST_GeomFromText('POINT(-71.2 42.5)', 4326) )
+
  * example url:
- * http://web3.cartodb.com/api/v2/sql?q=INSERT INTO test (name,description,the_geom)VALUES( ST_GeomFromText('POINT(-71.2 42.5)', 4326), 'tester', 'doing test')&api_key=954a0e60614f834ef20463f40caf4387bcb4b0c2 
+http://web3.cartodb.com/api/v2/sql?q=
+INSERT INTO YOURTABLENAME (name,description,the_geom)VALUES( ST_GeomFromText('POINT(-71.2 42.5)', 4326), 'tester', 'doing test')
+&api_key=YOURAPIKEY
+
+http://YOURNAME.cartodb.com/api/v2/sql?q=INSERT INTO YOURTABLENAME (name,description,the_geom)VALUES( ST_GeomFromText('POINT(-71.2 42.5)', 4326), 'tester', 'doing test VIA URL')&api_key=YOURAPIKEY
+
+http://YOURNAME.cartodb.com/api/v2/sql?q=INSERT INTO YOURTABLENAME (name,description,the_geom)VALUES( ST_GeomFromText('POINT(-71.2 42.5)', 4326), 'tester', 'doing test VIA URL')&api_key=YOURAPIKEY
+
+http://web3.cartodb.com/api/v2/sql?q=INSERT INTO test (name,description,the_geom) VALUES('hector', 'going%20with%20it', ST_GeomFromText('POINT(-73.92546075941762 40.6450305936858)', 4326) )&api_key=954a0e60614f834ef20463f40caf4387bcb4b0c2 
+ 
+ * 
  *
  */
 
 function update_carto(sql,msg){
+    
+    // var cartodb_accountname = 'web3';
+    // var cartodb_key = "&api_key=954a0e60614f834ef20463f40caf4387bcb4b0c2"; 
+    // var table_name = 'test';
+    
     
     console.log('update carto();');
     var theUrl = url_cartoData + sql + cartodb_key;
@@ -138,14 +171,12 @@ function update_carto(sql,msg){
         console.log('update_carto success');
         console.log(response);
         
-        if (msg){
             feedback(msg);
-            }
-        // }
     })
     .error(function() { 
         msg = 'Sorry. There was an error.';
         feedback(msg);
+        console.log(msg);
     })
     .complete(function() {  });  
     
@@ -191,26 +222,37 @@ function queryCarto(sql_statement){
 
     // console.log(url_query);
     $.getJSON(url_query, function(data){
+<<<<<<< HEAD
         console.log(data[0].features[0].geometry);
+=======
+//        console.log(data);
+//        console.log(data.features[0].properties.description);
+>>>>>>> b6714c12cd039ba163f9104a98699bcc23e037a1
 
         query_count = data.features.length;
 
         // write notes
         $.each(data.features, function(key, val) { // geojson
 
+
+            // console.log(data.features[0].properties.description);
+            // console.log(OBJECT.properties.description);
             var note = val.properties;
-            // console.log(note); // peek inside!!!!!!
+            console.log(note); // peek inside!!!!!!
+            console.log('hi: ' + note); // peek inside!!!!!!
+            console.log('hi',note); // peek inside!!!!!!
 
             var template = templateA.clone();
             template.removeClass('template');
 
-            template.find('strong')
-                .html(note.description)
+            template.find('strong').html('<i>'+note.description+'</i>')
                 
             template.find('em').text(note.name);
+            template.find('span').text(note.cartodb_id);
+            template.find('img').attr('src',note.img);
 
             output.push(template); // gather for append below
-            
+
         }); // END .each()
 
 
@@ -278,3 +320,38 @@ var random = {
         // example nyc = '-73.99086 40.735031';
     }
 }
+
+
+
+/*
+ * load my map
+ */
+
+// var myurl = 'http://web3.cartodb.com/viz/e4e25a80-2fbc-11e3-865a-bbb10aec048a/embed_map?title=false&description=false&search=false&shareable=false&cartodb_logo=true&layer_selector=false&legends=false&scrollwheel=false&sublayer_options=1&sql=&sw_lat=40.635403544299116&sw_lon=-74.1635513305664&ne_lat=40.78868343801402&ne_lon=-73.6691665649414'
+// $('#home iframe').attr('src',myurl);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
