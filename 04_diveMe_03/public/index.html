@@ -1,0 +1,37 @@
+<html>
+<head>
+    <link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/styles.css">
+</head>	
+
+<body>
+<div id="header">
+	<img src="img/eliza-header.jpg">
+</div>
+<div id="content">
+	<section id="choose">
+		<p>> Good morning Eliza, your first patient has a severe case of schizophrenia.</p>
+		<p>> All of her time is consumed by searching for her own name on Google. She has made the top 3 results of her search into her multiple personalities. Please speak to all of her personalities to help her.   </p>
+		<p>> To speak with the "celebrity" type j.</p>
+		<p>> To speak with the "designer hipster" type k.</p>
+		<p>> To speak with the "Natural Language Processing professional" type and e.</p>
+		<p>> <input type="text" id="choice"></input><input type="submit" id="submit"></input></p>
+	</section>
+		
+	<section id="fei-clone" class="column">
+		<h2></h2>
+		<div id="in"></div>
+		<div id="out"></div> 
+	</section>	
+</div>
+
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="socket.io/socket.io.js"></script>
+<script src="js/sockets.js"></script>
+<script src="elizabot_2/elizabot.js"></script>
+<script src="elizabot_2/elizadata.js"></script>
+	
+</body>
+</html>
